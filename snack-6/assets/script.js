@@ -1,158 +1,98 @@
-/*Abbiamo un elenco degli studenti di una facoltà
-Ogni studente ha un nome, un cognome, un numero di matricola e un elenco di voti.
-Dobbiamo creare un nuovo elenco dove ogni studente ha un nome-cognome, matricola e media voti
-*** BONUS
-Aggiungere la foto o l’avatar dello studente e stampare tutti gli studenti con delle card HTML in ordine alfabetico per cognome
-buon lavoro!
+/**SNACK 6*
+Creare un array di oggetti di squadre di calcio. Ogni squadra avrà diverse proprietà : nome,
+punti fatti, falli subiti.
+Nome sarà l’unica proprietà da compilare, le altre saranno tutte settate a 0.
+Generare numeri random al posto degli 0 nelle proprietà : punti fatti e falli subiti.
+Infine usando la destrutturazione creiamo un nuovo array i cui elementi contengono solo nomi e
+falli subiti e stampiamo tutto in console.
+BONUS
+Stampare in pagina oltre che in console!
 */
-const users = [
-  {
-    firstname: 'Andres',
-    lastname:  'Cayambe',
-    idcode:    getRandomNumber(9999,100000),
-    votes: [
-      {
-        subject: 'spanish',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'english',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'history',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'math',
-        vote: getRandomNumber(1,10)
-      }
-  
-    ]
-  },
-  {
-    firstname: 'Stefania',
-    lastname:  'Scandaglini',
-    idcode:    getRandomNumber(9999,100000),
-    votes: [
-      {
-        subject: 'spanish',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'english',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'history',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'math',
-        vote: getRandomNumber(1,10)
-      }
-  
-    ]
-  },
-  {
-    firstname: 'Jacqueline',
-    lastname:  'Brogi',
-    idcode:    getRandomNumber(9999,100000),
-    votes: [
-      {
-        subject: 'spanish',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'english',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'history',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'math',
-        vote: getRandomNumber(1,10)
-      }
-  
-    ]
-  },
-  {
-    firstname: 'Rosa',
-    lastname:  'Pilicita',
-    idcode:    getRandomNumber(9999,100000),
-    votes: [
-      {
-        subject: 'spanish',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'english',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'history',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'math',
-        vote: getRandomNumber(1,10)
-      }
-  
-    ]
-  },
-  {
-    firstname: 'Ramon',
-    lastname:  'Ulcuango ',
-    idcode:    getRandomNumber(9999,100000), 
-    votes: [
-      {
-        subject: 'spanish',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'english',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'history',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'math',
-        vote: getRandomNumber(1,10)
-      }
-  
-    ]
-  }
+const Premiere = [
+    {
+        squad: "Arsenal ",
+        pointsMade : 0,
+        sufferedFouls: 0
+    },
+    {
+        squad: "Man. City ",
+        pointsMade : 0,
+        sufferedFouls: 0
+    },
+    {
+        squad: "Newcastle",
+        pointsMade : 0,
+        sufferedFouls: 0
+    },
+    {
+        squad: "Man. Utd ",
+        pointsMade : 0,
+        sufferedFouls: 0
+    },
+    {
+        squad: "Aston Villa",
+        pointsMade : 0,
+        sufferedFouls: 0
+    },
+    {
+        squad: "Tottenham",
+        pointsMade : 0,
+        sufferedFouls: 0
+    },
+    {
+        squad: "Liverpool",
+        pointsMade : 0,
+        sufferedFouls: 0
+    },
+    {
+        squad: "Brighton",
+        pointsMade : 0,
+        sufferedFouls: 0
+    },
+    {
+        squad: "Fulham",
+        pointsMade : 0,
+        sufferedFouls: 0
+    },
+    {
+        squad: "Wolves",
+        pointsMade : 0,
+        sufferedFouls: 0
+    },
 ]
 
-const usersAverage = users.map (user =>{
+const getRandomNumbers = (min,max) =>Math.floor(Math.random()* (max - min + 1) + min) 
+const ul = document.querySelector("ul");
 
-  const { firstname , lastname , idcode, votes } = user; 
-  console.log(averageVotes(votes));
-  const userAverage = {
-    firstname: `${firstname}`,
-    lastname : `${lastname}`,
-    idcode   : `${idcode}`,
-    votes    : `${averageVotes(votes)}`,
- 
-  }
-   return userAverage;
+
+Premiere.forEach(squad => {
+    squad.pointsMade = getRandomNumbers(0,80);
+    squad.sufferedFouls = getRandomNumbers(0,30);
+});
+console.log(Premiere)
+
+const premiereFouls = Premiere.map((object)=> {
+    const {squad,sufferedFouls} = object
+    object = 
+    {
+        squad,
+        sufferedFouls,
+    }
+    return object
 })
 
-function averageVotes(votes) {
-  let sum = 0;
-  votes.forEach(exam => {
-    sum += exam.vote
-  });
-  return Math.round( sum / votes.length );
+premiereFouls.sort((a,b)=>b.sufferedFouls-a.sufferedFouls);
+
+
+for (const object of premiereFouls) {
+  const {squad,sufferedFouls} = object
+  const li = document.createElement("li")
+  li.className ="list-group-item"
+  li.innerHTML = `
+  <div class="row">
+  <div class="col-7 d-flex align-items-center "><span class="fw-bolder text-uppercase fs-3">${squad}</span></div>
+  <div class="col-2 d-flex align-items-center"><span class="fw-bolder text-uppercase fs-5">${sufferedFouls}</span></div>
+  </div>
+  `
+  ul.appendChild(li)
 }
-
-
-function getRandomNumber(min,max) {
- return  Math.floor( Math.random() * ( max - min + 1 ) + min )
-}   
-
-console.log(usersAverage);
