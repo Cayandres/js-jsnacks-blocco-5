@@ -1,158 +1,56 @@
-/*Abbiamo un elenco degli studenti di una facoltà
-Ogni studente ha un nome, un cognome, un numero di matricola e un elenco di voti.
-Dobbiamo creare un nuovo elenco dove ogni studente ha un nome-cognome, matricola e media voti
-*** BONUS
-Aggiungere la foto o l’avatar dello studente e stampare tutti gli studenti con delle card HTML in ordine alfabetico per cognome
-buon lavoro!
+/*SNACK 5*
+Creare un array di oggetti:
+Ogni oggetto descriverà una bici da corsa con le seguenti proprietà : nome e peso.
+Stampare in console la bici con peso minore utilizzando destructuring e template literal
 */
-const users = [
-  {
-    firstname: 'Andres',
-    lastname:  'Cayambe',
-    idcode:    getRandomNumber(9999,100000),
-    votes: [
-      {
-        subject: 'spanish',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'english',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'history',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'math',
-        vote: getRandomNumber(1,10)
-      }
-  
-    ]
-  },
-  {
-    firstname: 'Stefania',
-    lastname:  'Scandaglini',
-    idcode:    getRandomNumber(9999,100000),
-    votes: [
-      {
-        subject: 'spanish',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'english',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'history',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'math',
-        vote: getRandomNumber(1,10)
-      }
-  
-    ]
-  },
-  {
-    firstname: 'Jacqueline',
-    lastname:  'Brogi',
-    idcode:    getRandomNumber(9999,100000),
-    votes: [
-      {
-        subject: 'spanish',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'english',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'history',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'math',
-        vote: getRandomNumber(1,10)
-      }
-  
-    ]
-  },
-  {
-    firstname: 'Rosa',
-    lastname:  'Pilicita',
-    idcode:    getRandomNumber(9999,100000),
-    votes: [
-      {
-        subject: 'spanish',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'english',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'history',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'math',
-        vote: getRandomNumber(1,10)
-      }
-  
-    ]
-  },
-  {
-    firstname: 'Ramon',
-    lastname:  'Ulcuango ',
-    idcode:    getRandomNumber(9999,100000), 
-    votes: [
-      {
-        subject: 'spanish',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'english',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'history',
-        vote: getRandomNumber(1,10)
-      },
-      {
-        subject: 'math',
-        vote: getRandomNumber(1,10)
-      }
-  
-    ]
-  }
+const bikeList = [
+    {
+        name : 'Graziella',
+        weight : parseFloat(getRandomNumbers(1,10).toFixed(2))
+    } ,
+    {
+        name : 'Offroad',
+        weight : parseFloat(getRandomNumbers(1,10).toFixed(2))
+    } ,
+    {
+        name : 'Downhill',
+        weight : parseFloat(getRandomNumbers(1,10).toFixed(2))
+    } ,
+    {
+        name : 'city',
+        weight : parseFloat(getRandomNumbers(1,10).toFixed(2))
+    } ,
+    {
+        name : 'Downhill',
+        weight : parseFloat(getRandomNumbers(1,10).toFixed(2))
+    } ,
+    {
+        name : 'Cross',
+        weight : parseFloat(getRandomNumbers(1,10).toFixed(2))
+    } ,
+    {
+        name : 'Bmx',
+        weight : parseFloat(getRandomNumbers(1,10).toFixed(2))
+    } ,
 ]
 
-const usersAverage = users.map (user =>{
+console.log(listaBici);
 
-  const { firstname , lastname , idcode, votes } = user; 
-  console.log(averageVotes(votes));
-  const userAverage = {
-    firstname: `${firstname}`,
-    lastname : `${lastname}`,
-    idcode   : `${idcode}`,
-    votes    : `${averageVotes(votes)}`,
- 
-  }
-   return userAverage;
+const lightestBike = bikeList.reduce(function(a, b) {
+    if (a.weight < b.weight) {
+        return a
+    }
+    return b
 })
-
-function averageVotes(votes) {
-  let sum = 0;
-  votes.forEach(exam => {
-    sum += exam.vote
-  });
-  return Math.round( sum / votes.length );
-}
+console.log(lightestBike)
 
 
-function getRandomNumber(min,max) {
- return  Math.floor( Math.random() * ( max - min + 1 ) + min )
-}   
+const {name,weight} = lightestBike
 
-console.log(usersAverage);
+console.log(`la bici più leggera è la ${name} con i suoi ${weight} kg.`);
+
+
+
+const getRandomNumbers = (min,max) => Math.random()* (max - min + 1) + min;
+
+
